@@ -1,0 +1,49 @@
+<div class="modal fade" id="mymodal" >
+    <div class="modal-dialog modal-fullscreen-md-down modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('customers.store') }}" method="post">
+                    @csrf
+                    <div class="row">
+                        <label for="name" class="col-md-4">Customer Name</label>
+                        <div class="col-md-8">
+                            <input type="text" name="name" id="name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <label for="mobile" class="col-md-4">Mobile</label>
+                        <div class="col-md-8">
+                            <input type="text" name="mobile" id="mobile" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <label for="vehicle" class="col-md-4">Vehicle Number</label>
+                        <div class="col-md-8">
+                            <input type="text" name="vehicle_number" id="vehicle" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <label for="address" class="col-md-4">Address</label>
+                        <div class="col-md-8">
+                            <textarea name="address" class="form-control" id="address" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <label for="" class="col-md-4"></label>
+                        <div class="col-md-8 ">
+                            <div class="float-end">
+                                <input type="button" class="btn btn-danger" data-bs-dissmiss="modal" value="Close">
+                                <input type="submit" class="btn btn-primary" >
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
