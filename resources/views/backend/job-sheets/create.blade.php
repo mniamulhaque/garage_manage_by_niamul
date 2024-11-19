@@ -7,7 +7,18 @@
 @push('style')
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
 
-
+<style type="text/css">
+    .hr-lines:after{
+      content:" ";
+      display: block;
+      height: 1px;
+      width: 83%;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: white;
+    }
+</style>
 
 @endpush
 
@@ -33,7 +44,7 @@
 
                         <div class="row mt-3">
                             <div class="col-md-4">
-                                <label for="" class=""></label>
+                                <label for="" class="">Job Sheet Id</label>
 
 
 
@@ -41,8 +52,8 @@
 
 
                                     <input type="text" name="job_no" class="form-control"
-                                        value="{{ isset($jobSheet) ? $jobSheet->job_no : 1000 }}" readonly
-                                        placeholder="Job No" />
+                                        value="{{ isset($jobSheet) ? $jobSheet->job_no : $jobNumber }}" readonly
+                                        placeholder="Job No" required/>
 
 
                                 </div>
@@ -60,7 +71,7 @@
                                 <label for="" class="">Date</label>
 
                                 <div class="">
-                                    <input  class="ms-2 form-control" name="date"  type="text" id="datepicker3" value="{{ date('m/d/Y') }}" >
+                                    <input  class="ms-2 form-control" name="date"  type="text" id="datepicker3" value="{{ date('m/d/Y') }}" required>
 
                                 </div>
 
@@ -73,23 +84,19 @@
                             <div class="col-md-4">
                                 <label for="" class="">Owner Name</label>
                                 <div class="">
-                                    <select name="customer_id" id="name" class=" form-control " data-toggle="select"
-                                        data-placeholder="Choose ...">
+                                    <select class="selectpicker form-control" name="customer_id" id="name" data-live-search="true" data-container="body" required>
                                         <option value="">Select a Owner Name</option>
-                                        @foreach ($customers as $customer)
-                                            <option value="{{ $customer->id }}"
-                                                {{ $errors->any() ? old('customer_id') : (isset($jobSheet) && $jobSheet->customer_id == $customer->id ? 'selected' : '') }}>
-                                                {{ $customer->name }}</option>
-                                        @endforeach
+                                          @foreach ($customers as $customer)
+                                                <option value="{{ $customer->id }}"
+                                                    {{ $errors->any() ? old('customer_id') : (isset($jobSheet) && $jobSheet->customer_id == $customer->id ? 'selected' : '') }}>
+                                                    {{ $customer->id.' - '.$customer->name.'-'.$customer->mobile}}</option>
+                                            @endforeach
                                     </select>
                                 </div>
                                 @error('customer_id')
                                     <span class="text-danger">{{ $errors->first('customer_id') }}</span>
                                 @enderror
                             </div>
-
-
-
                         </div>
 
                         <div class="row mt-3">
@@ -100,7 +107,7 @@
                                 <div class="">
                                     <input type="text" name="mob" class="form-control" id="mobileNumber"
                                     value="{{ isset($jobSheet) ? $jobSheet->mob : '' }}"
-                                    placeholder="Owner Mob" />
+                                    placeholder="Owner Mob" required/>
                                 </div>
                                 @error('mob')
                                     <span class="text-danger">{{ $errors->first('mob') }}</span>
@@ -115,7 +122,7 @@
                                 <label for="" class="">Vehicle No</label>
 
                                 <select name="vehicle_id" id="vehicleNumber" class=" form-control " data-toggle="select"
-                                    data-placeholder="Choose ...">
+                                    data-placeholder="Choose ..." required>
                                     <option value="">Select a Vehicle No</option>
                                     @foreach ($vehicles as $vehicle)
                                         <option value="{{ $vehicle->id }}"
@@ -136,7 +143,7 @@
                            <div class="">
                                     <input type="text" name="color" class="form-control" id="color"
                                     value="{{ isset($jobSheet) ? $jobSheet->color : '' }}"
-                                    placeholder="Vehicle Color" />
+                                    placeholder="Vehicle Color" required/>
                                 </div>
                             @error('color')
                                 <span class="text-danger">{{ $errors->first('color') }}</span>
@@ -153,7 +160,7 @@
                                 <div class="">
                                     <input type="text" name="driver_name" class="form-control"
                                         value="{{ isset($jobSheet) ? $jobSheet->driver_name : '' }}"
-                                        placeholder="Driver Name" />
+                                        placeholder="Driver Name" required/>
                                 </div>
 
                                 @error('driver_name')
@@ -169,7 +176,7 @@
                                 <div class="">
                                     <input type="text" name="mob" class="form-control"
                                         value="{{ isset($jobSheet) ? $jobSheet->mob : '' }}"
-                                        placeholder="Mob" />
+                                        placeholder="Mob" required/>
                                 </div>
 
                                 @error('mob')
@@ -184,18 +191,13 @@
                                 <div class="">
                                     <input type="text" name="vehicle_incoming_date"  class="form-control"   id="datepicker"
                                         value="{{ isset($jobSheet) ? $jobSheet->vehicle_incoming_date : date('m/d/Y')}}"
-                                        placeholder="Vehicle Incoming Date" />
+                                        placeholder="Vehicle Incoming Date" required/>
                                 </div>
 
                                 @error('vehicle_incoming_date')
                                     <span class="text-danger">{{ $errors->first('vehicle_incoming_date') }}</span>
                                 @enderror
                             </div>
-
-
-
-
-
 
                         </div>
 
@@ -207,7 +209,7 @@
                                 <div class="">
                                     <input type="text" name="vehicle_outgoing_date" class="form-control"  id="datepicker2"
                                         value="{{ isset($jobSheet) ? $jobSheet->vehicle_outgoing_date : date('m/d/Y')  }}"
-                                        placeholder="Vehicle Outgoing Date" />
+                                        placeholder="Vehicle Outgoing Date" required/>
                                 </div>
 
                                 @error('vehicle_outgoing_date')
@@ -222,7 +224,7 @@
                                 <div class="">
                                     <input type="text" name="received_by" class="form-control"
                                         value="{{ isset($jobSheet) ? $jobSheet->received_by :  auth()->user()->name }} "
-                                        placeholder="Received By" />
+                                        placeholder="Received By" required/>
                                 </div>
 
                                 @error('received_by')
@@ -230,13 +232,80 @@
                                 @enderror
                             </div>
 
+                        </div>
+                        <!----work descriptions--------------------------------------------->
+                        @if(isset($wd))
+                          <div class="row mt-5">
+                            <div class="col-md-12">
+                                <h2 class="hr-lines">Work Description</h2>
+                            </div>
+                        </div>
+                        @foreach($wd as $key => $wdrow)
+                         <div class="row mt-3">
+
+                            <div class="col-md-4">
+                                <label for="" class="">SL</label>
+
+                                <div class="">
+                                    <input type="text" class="form-control"  id="datepicker2"
+                                        value="{{ isset($wd) ? ++$key : ''}}"
+                                        placeholder=""/>
+                                    <input type="text"
+                                        value="{{ isset($wd) ? $wdrow->id : ''}}" name="wd_id" hidden/>
+                                </div>
+                            </div>
 
 
+                            <div class="col-md-8">
+                                <label for="" class="">DESCRIPTION</label>
 
-
+                               <div class="">
+                                    <textarea class="form-control" name="wdes"  id="datepicker2"
+                                        value="{{ isset($wd) ? $wdrow->wdes : ''}}" cols="100%" rows="5" 
+                                        required>{{ isset($wd) ? $wdrow->wdes : ''}}</textarea>
+                                </div>
+                            </div>
 
                         </div>
+                        @endforeach
+                        @endif
 
+                        <!----work descriptions--------------------------------------------->
+                        @if(isset($wd))
+                          <div class="row mt-5">
+                            <div class="col-md-12">
+                                <h2 class="hr-lines">Tools and Paper</h2>
+                            </div>
+                        </div>
+                        @foreach($tp as $key => $tprow)
+                         <div class="row mt-3">
+
+                            <div class="col-md-4">
+                                <label for="" class="">SL</label>
+
+                                <div class="">
+                                    <input type="text" class="form-control"  id="datepicker2"
+                                        value="{{ isset($tp) ? ++$key : ''}}"
+                                        placeholder=""/>
+                                    <input type="text"
+                                        value="{{ isset($tp) ? $tprow->id : ''}}" name="wd_id" hidden/>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-8">
+                                <label for="" class="">DESCRIPTION</label>
+
+                               <div class="">
+                                    <textarea class="form-control" name="tp_name"  id="datepicker2"
+                                        value="{{ isset($tp) ? $tprow->name : ''}}" cols="100%" rows="5" 
+                                        required>{{ isset($tp) ? $tprow->name : ''}}</textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                        @endforeach
+                        @endif
 
 
 

@@ -25,51 +25,26 @@
                         <div class="row">
                             <label for="name" class="col-md-4">Customer Name</label>
                             <div class="col-md-8">
-                                <input type="text" name="name" id="name" class="form-control" />
+                                <input type="text" name="name" id="name" class="form-control" required/>
                             </div>
                         </div>
 
                         <div class="row mt-3">
                             <label for="email" class="col-md-4">Email</label>
                             <div class="col-md-8">
-                                <input type="text" name="email" id="email" class="form-control" />
+                                <input type="text" name="email" id="email" class="form-control" required/>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <label for="mobile" class="col-md-4">Mobile</label>
                             <div class="col-md-8">
-                                <input type="text" name="mobile" id="mobile" class="form-control" />
+                                <input type="text" name="mobile" id="mobile" class="form-control" required/>
                             </div>
-                        </div>
-                        <div class="row mt-3">
-
-                                <label for="" class="col-md-4">Vehicle Number</label>
-                                <div class="col-md-6" >
-                                    <div style="width: 100% !important">
-                                        <select name="vehicle_number" class=" form-control js-example-basic-single" >
-                                            <option value="" selected hidden>--Select a Vehicle Number-- </option>
-                                            @foreach ($vehicles as $vehicle)
-                                                <option value="{{ $vehicle->vehicle_number }}">
-                                                    {{ $vehicle->vehicle_number }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    @error('vehicle_number')
-                                        <span class="text-danger">{{ $errors->first('vehicle_number') }}</span>
-                                    @enderror
-
-                                    </div>
-                                    <div class="col-md-2"><a class="btn float-end btn-primary" href="{{ route('vehicles.create',['rf' => 'customerCreate']) }}">Create</a></div>
-
-
-
-
-
                         </div>
                         <div class="row mt-3">
                             <label for="address" class="col-md-4">Address</label>
                             <div class="col-md-8">
-                                <textarea name="address" class="form-control" id="address" cols="30" rows="10"></textarea>
+                                <textarea name="address" class="form-control" id="address" cols="30" rows="10" required></textarea>
                             </div>
                         </div>
                         <div class="row mt-3">

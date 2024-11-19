@@ -26,7 +26,6 @@
                                         <th>SL</th>
                                         <th>Customer Number</th>                                        <th>Name</th>
                                         <th>Mobile</th>
-                                        <th>Vehicle Number</th>
                                         <th>Email</th>
                                         <th>Address</th>
                                         <th>Action</th>
@@ -39,7 +38,6 @@
                                             <td>{{ $customer->id }}</td>
                                             <td>{{ $customer->name }}</td>
                                             <td>{{ $customer->mobile }}</td>
-                                            <td>{{ $customer->vehicle_number }}</td>
                                             <td>{{ $customer->email }}</td>
                                             <td>{{ $customer->address }}</td>
                                             <td class="d-flex" style="border: none">

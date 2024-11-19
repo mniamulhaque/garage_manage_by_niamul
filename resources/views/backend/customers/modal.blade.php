@@ -38,24 +38,6 @@
                             <input type="text" name="vehicle_number" id="vehicle" class="form-control" />
                         </div>
                     </div> --}}
-
-                     <div class="row mt-3">
-
-                                <label for="" class="col-md-4">Vehicle Number</label>
-                                <div class="col-md-8">
-                                    <select name="vehicle_number" class=" form-control js-example-basic-single " id="vehicle">
-                                        <option value="" selected hidden>--Select a Vehicle Number-- </option>
-                                        @foreach ($vehicles as $vehicle)
-                                            <option value="{{ $vehicle->vehicle_number }}">
-                                                {{ $vehicle->vehicle_number }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                @error('vehicle_number')
-                                    <span class="text-danger">{{ $errors->first('vehicle_number') }}</span>
-                                @enderror
-
-                        </div>
                     <div class="row mt-3">
                         <label for="address" class="col-md-4">Address</label>
                         <div class="col-md-8">

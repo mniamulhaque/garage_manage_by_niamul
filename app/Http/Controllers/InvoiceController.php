@@ -29,6 +29,7 @@ class InvoiceController extends Controller
     {
         return view('backend.invoices.create', [
             'customer' => isset(request()->customer) ? Customer::findOrFail(\request()->customer) : null,
+            'customers'  =>Customer::all(),
             'vehicles' => Vehicle::all()
         ]);
     }
@@ -36,19 +37,19 @@ class InvoiceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    // public function store(Request $request)
-    // {
-    //     try {
-    //         $invoice = Invoice::storeInvoice($request);
-    //         if ($invoice)
-    //         {
-    //             InvoiceDetail::storeInvoiceDetail($request, $invoice->id);
-    //         }
-    //         return response()->json(['status' => 'success', 'msg' => 'Invoice has been created','invoice' =>$invoice] );
-    //     } catch (\Exception $exception) {
-    //         return response()->json(['status' => 'success', 'msg' => $exception->getMessage()]);
-    //     }
-    // }
+    public function store(Request $request)
+    {
+        try {
+            $invoice = Invoice::storeInvoice($request);
+            if ($invoice)
+            {
+                InvoiceDetail::storeInvoiceDetail($request, $invoice->id);
+            }
+            return response()->json(['status' => 'success', 'msg' => 'Invoice has been created','invoice' =>$invoice] );
+        } catch (\Exception $exception) {
+            return response()->json(['status' => 'success', 'msg' => $exception->getMessage()]);
+        }
+    }
 
     /**
      * Display the specified resource.

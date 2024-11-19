@@ -27,7 +27,7 @@
                                 <label for="" class=""> Vehicle Brand Name</label>
                                 <div class="">
                                     <select name="vehicle_brand_id" class=" form-control " data-toggle="select"
-                                        data-placeholder="Choose ...">
+                                        data-placeholder="Choose ..." required>
                                         <option value="">Select a Vehicle Brand</option>
                                         @foreach ($vehicleBrands as $vehicleBrand)
                                             <option value="{{ $vehicleBrand->id }}"
@@ -49,8 +49,7 @@
                             <div class="col-md-4">
                                 <label for="" class=""> Vehicle Type</label>
 
-                                <select name="vehicle_type_id" class=" form-control " data-toggle="select"
-                                    data-placeholder="Choose ...">
+                                <select name="vehicle_type_id" class=" form-control " data-toggle="select" required>
                                     <option value="">Select a Vehicle Type</option>
                                     @foreach ($vehicleTypes as $vehicleType)
                                         <option value="{{ $vehicleType->id }}"
@@ -67,8 +66,7 @@
                             <div class="col-md-4">
                                 <label for="" class=""> Vehicle Color</label>
 
-                                <select name="vehicle_color_id" class=" form-control " data-toggle="select"
-                                    data-placeholder="Choose ...">
+                                <select name="vehicle_color_id" class=" form-control " data-toggle="select" required>
                                     <option value="">Select a Vehicle Color</option>
                                     @foreach ($vehicleColors as $vehicleColor)
                                         <option value="{{ $vehicleColor->id }}"
@@ -89,7 +87,7 @@
                                 <div class="">
                                     <input type="text" name="vehicle_model" class="form-control"
                                         value="{{ isset($vehicle) ? $vehicle->vehicle_model : '' }}"
-                                        placeholder=" Vehicle Model" />
+                                        placeholder=" Vehicle Model" required/>
                                 </div>
                                 @error('vehicle_model')
                                     <span class="text-danger">{{ $errors->first('vehicle_model') }}</span>
@@ -102,7 +100,7 @@
                                 <div class="">
                                     <input type="text" name="vehicle_current_milage" class="form-control"
                                         value="{{ isset($vehicle) ? $vehicle->vehicle_current_milage : '' }}"
-                                        placeholder=" Vehicle Current Milage" />
+                                        placeholder=" Vehicle Current Milage" required/>
                                 </div>
                                 @error('vehicle_current_milage')
                                     <span class="text-danger">{{ $errors->first('vehicle_current_milage') }}</span>
@@ -115,7 +113,7 @@
                                 <div class="">
                                     <input type="text" name="vehicle_number" class="form-control"
                                         value="{{ isset($vehicle) ? $vehicle->vehicle_number : '' }}"
-                                        placeholder=" Vehicle Number" />
+                                        placeholder=" Vehicle Number" required/>
                                 </div>
                                 @error('vehicle_number')
                                     <span class="text-danger">{{ $errors->first('vehicle_number') }}</span>

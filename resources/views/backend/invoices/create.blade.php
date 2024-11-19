@@ -30,6 +30,11 @@
             top: 60px;
             right: -40px;
         }
+        .right_site_group{
+            margin-top: 150px;
+            margin-left: 70px;
+          }
+
 
          
              
@@ -42,10 +47,10 @@
             margin-top:175px
           }
 
-          table, th, td {
-              border: 1px red solid;
-              padding: 10px;
-            }
+          .right_site_group{
+            margin-top: 150px;
+            margin-left: 70px;
+          }
 
     }
 
@@ -80,8 +85,8 @@
                                     </div>
 
                                     <div class="d-flex align-items-center ">
-                                        <p class="me-2"><b>Vehicle Number:</b></p>
-                                        <p  id="vehicleNumber">{{ $customer->vehicle_number ?? '' }}</p>
+                                        <p class="me-2"><b>Mobile Number:</b></p>
+                                        <p  id="mobileNumber">{{ $customer->mobile ?? '' }}</p>
                                     </div>
 
                                     <div class="d-flex align-items-center ">
@@ -90,8 +95,8 @@
                                     </div>
 
                                     <div class="d-flex align-items-center ">
-                                        <p class="me-2"><b>Mobile Number:</b></p>
-                                        <p  id="mobileNumber">{{ $customer->mobile ?? '' }}</p>
+                                        <p class="me-2"><b>Vehicle Number:</b></p>
+                                        <p  id="vehicleNumber">{{ $customer->vehicle_number ?? '' }}</p>
                                     </div>
                                 </div>
                                 {{-- <div class="col-md-4">
@@ -120,26 +125,48 @@
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-4 mt-5">
-                        <div class=" d-flex align-items-center mt-1">
-                            <b>Date: </b>
-                            <input  class="ms-2" type="text" value="{{ date('d-m-Y') }}" readonly>
+                        <div class="right_site_group">
+                             <div class=" d-flex align-items-center mt-1">
+                                <b>Date : {{ date('d-m-Y') }}</b>
+                            </div>
+                            <div class="d-flex align-items-center mb-1">
+                                <p class="me-2"><b>Customar Id : </b></p>
+                                <p  id="ownerId">{{ $customer->customer_id ?? '' }}</p>
+                            </div>
+
+                            <div class="align-items-center mt-1 hide" style="display:none">
+                                <b>Invoice Id: </b>
+                                <input id="invoiceNumber" class="ms-2" type="text" value="" readonly>
+                            </div>
                         </div>
 
-                        <div class="align-items-center mt-1 hide" style="display:none">
-                            <b>Invoice Id: </b>
-                            <input id="invoiceNumber" class="ms-2" type="text" value="" readonly>
-                        </div>
 {{--                        <div class="row mt-1">--}}
 {{--                            <span class="col-md-6"><span class="float-end"><b>Invoice Id: </b></span></span>--}}
 {{--                            <span class="col-md-6 "> <input type="text" value="{{ rand(10, 100000) }}" ></span>--}}
 {{--                        </div>--}}
                         <div class="d-flex align-items-center mt-1 ignore">
-                            <label for="" class="">Owner Name</label>
+                            <label for="" class="">Customer Name : </label>
                             <div class="">
-                                <select class="selectpicker" id="customerId" data-live-search="true" data-container="body">
-                                      <option data-tokens="100">100-Hot Dog, Fries and a Soda</option>
-                                      <option data-tokens="101">101-Burger, Shake and a Smile</option>
-                                      <option data-tokens="102">102-Sugar, Spice and all things nice</option>
+                                <select class="selectpicker" name="customer_id" id="customerId" data-live-search="true" data-container="body" required>
+                                    <option value="">Select a Customer Name</option>
+                                      @foreach ($customers as $customer)
+                                            <option value="{{ $customer->id }}"
+                                                {{ $errors->any() ? old('customer_id') : (isset($jobSheet) && $jobSheet->customer_id == $customer->id ? 'selected' : '') }}>
+                                                {{ $customer->id.' - '.$customer->name }}</option>
+                                        @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center mt-1 ignore">
+                            <label for="" class="">Vehicle Number : </label>
+                            <div class="">
+                                <select name="vehicle_number" id="vehicle_number" class="selectpicker" data-live-search="true" data-container="body">
+                                    <option value="0">--Select a Vehicle Number-- </option>
+                                    @foreach ($vehicles as $vehicle)
+                                        <option value="{{ $vehicle->vehicle_number }}">
+                                            {{ $vehicle->vehicle_number }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -157,16 +184,16 @@
                                     <th colspan="2">DESCRIPTION</th>
                                     <th>QUT</th>
                                     <th>PRICE</th>
-                                    <th colspan="2">AMOUNT</th>
+                                    <th colspan="2" class="">AMOUNT</th>
                                 </tr>
 
                                 <tbody id="tbody">
                                 <tr>
-                                    <td style="width: 80px"><input type="text" value="1" class="" readonly></td>
-                                    <td colspan="2" style=""><input type="text" class="" name="description[1]"></td>
-                                    <td><input type="text" min="0" class=" qty" name="qty[1]"></td>
-                                    <td><input type="text" min="0" class=" price" name="price[1]"></td>
-                                    <td><input type="text" min="0" class=" amount" name="amount[1]" readonly></td>
+                                    <td style="width: 80px"><input type="text" value="1" class="text-center" readonly></td>
+                                    <td colspan="2" style=""><input type="text" class="text-center" name="description[1]"></td>
+                                    <td><input type="text" min="0" class=" qty text-center" name="qty[1]"></td>
+                                    <td><input type="text" min="0" class=" price text-center" name="price[1]"></td>
+                                    <td><input type="text" min="0" class=" amount text-center" name="amount[1]" readonly></td>
                                     <td class="d-flex ignore">
                                         <button type="button" class="btn border btn-light plus">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -195,7 +222,7 @@
                                 <tr>
                                     <td colspan="4"></td>
                                     <td class="text-right"><span class="float-end">Discount</span></td>
-                                    <td class="text-right" colspan="2"><input type="text" id="discount" name="discount" class="discount"></td>
+                                    <td class="text-right" colspan="2"><input type="text" value="0" id="discount" name="discount" class="discount"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="4"></td>
@@ -230,7 +257,6 @@
                         </div>
                     </div>
                 </div>
-                <p>INWORD: <span class="inword text-uppercase">Zero</span></p>
             </div>
         </form>
     </section>
@@ -248,11 +274,11 @@
         var serialNumber = 1;
         $(document).on('click', '.plus', function () {
             var tr = '<tr>'+
-                '<td><input type="text" value="'+ ++serialNumber +'" class="" readonly></td>' +
-            '<td colspan="2"><input type="text" class="" name="description['+serialNumber+']"></td>' +
-            '<td><input type="number" min="0" class=" qty" name="qty['+serialNumber+']"></td>' +
-            '<td><input type="number" class=" price" name="price['+serialNumber+']"></td>' +
-            '<td><input type="number" class=" amount" name="amount['+serialNumber+']" readonly></td>' +
+                '<td><input type="text" value="'+ ++serialNumber +'" class="text-center" readonly></td>' +
+            '<td colspan="2"><input type="text" class="text-center" name="description['+serialNumber+']"></td>' +
+            '<td><input type="number" min="0" class=" qty text-center" name="qty['+serialNumber+']"></td>' +
+            '<td><input type="number" class=" price text-center" name="price['+serialNumber+']"></td>' +
+            '<td><input type="number" class=" amount text-center" name="amount['+serialNumber+']" readonly></td>' +
             '<td class="d-flex ignore">' +
                 '<button type="button" class="btn border btn-light plus">'+
                     '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">'+
@@ -345,36 +371,36 @@ $(document).on('keyup', '#discount', function () {
             getTotal();
         })
         $(document).on('click', '.print-btn', function () {
-            $('.print-area').print({
-                append : null,
-                prepend : null,
-                noPrintSelector : ".ignore",
-            });
-            // var formData = $('#invoiceForm').serialize();
-            // // console.log(formData);
-            // $.ajax({
-            //     url: "{{ url('/') }}/invoices",
-            //     method: "POST",
-            //     data: formData,
-            //     success: function (response) {
-            //         console.log(response);
-            //         if (response.status == 'success')
-            //         {
-            //             toastr.success(response.msg);
-            //             $('#invoiceNumber').val(response.invoice.id);
-            //             $('.hide').css('display', 'block')
-            //             $('.print-area').print({
-            //                 append : null,
-            //                 prepend : null,
-            //                 noPrintSelector : ".ignore",
-            //             });
+            // $('.print-area').print({
+            //     append : null,
+            //     prepend : null,
+            //     noPrintSelector : ".ignore",
+            // });
+            var formData = $('#invoiceForm').serialize();
+            // console.log(formData);
+            $.ajax({
+                url: "{{ url('/') }}/invoices",
+                method: "POST",
+                data: formData,
+                success: function (response) {
+                    console.log(response);
+                    if (response.status == 'success')
+                    {
+                        toastr.success(response.msg);
+                        $('#invoiceNumber').val(response.invoice.id);
+                        $('.hide').css('display', 'block')
+                        $('.print-area').print({
+                            append : null,
+                            prepend : null,
+                            noPrintSelector : ".ignore",
+                        });
 
-            //             // location.reload();
-            //         } else {
-            //             toastr.error(response.msg);
-            //         }
-            //     }
-            // })
+                        // location.reload();
+                    } else {
+                        toastr.error(response.msg);
+                    }
+                }
+            })
         })
 
         $(document).on('click', '.pdf-btn', function () {
@@ -398,7 +424,7 @@ $(document).on('keyup', '#discount', function () {
 
 
 <script>
-
+    //customer id change
     $(document).on('change', '#customerId', function (){
         event.preventDefault();
 
@@ -411,12 +437,21 @@ $(document).on('keyup', '#discount', function () {
                 console.log(response);
                 $('#name').text(response.name);
                 $('#mobileNumber').text(response.mobile);
-                $('#vehicleNumber').text(response.vehicle_number);
                 $('#address').text(response.address);
+                $('#ownerId').text(response.id);
 
             }
-        })
-    })
+        });
+    });
+
+    // vahicle number change
+    $(document).on('change', '#vehicle_number', function (){
+        event.preventDefault();
+
+       var vehicle_number =  $('#vehicle_number').val();
+
+       $('#vehicleNumber').text(vehicle_number);
+    });
 
     $(document).ready(function(){
     $('.selectpicker').selectpicker();

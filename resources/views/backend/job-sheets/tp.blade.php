@@ -59,7 +59,7 @@
                                 <tbody id="tbody">
                                 <tr>
                                     <td><input type="text" value="1" class="" readonly></td>
-                                    <td  style=""><input type="text" class="" name="name[1]"></td>
+                                    <td  style=""><textarea  class="me-5" name="name[1]" cols="50" rows="5"></textarea></td>
 
                                         <button type="button" class="btn border btn-light plus">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -106,7 +106,7 @@
         $(document).on('click', '.plus', function () {
             var tr = '<tr>'+
                 '<td><input type="text" value="'+ ++serialNumber +'" class="" readonly></td>' +
-            '<td ><input type="text" class="" name="name['+serialNumber+']"></td>' +
+            '<td ><textarea  class="me-5" name="name['+serialNumber+']" cols="50" rows="5"></textarea></td>' +
 
             '<td class="d-flex ignore">' +
                 '<button type="button" class="btn border btn-light plus">'+

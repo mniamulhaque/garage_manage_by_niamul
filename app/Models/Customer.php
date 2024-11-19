@@ -19,7 +19,7 @@ class Customer extends Model
 
     public static function updateOrCreateCustomer($request, $customer = null)
     {
-        return Customer::updateOrCreate(['id' => $customer], $request->all());
+        return Customer::updateOrCreate(['id' => $customer,'vehicle_number' => 0], $request->all());
     }
 
     public function vehicles()

@@ -10,6 +10,7 @@ use App\Models\Color;
 use App\Models\Spv;
 use App\Models\Wd;
 use App\Models\Twb;
+use App\Models\Tp;
 use App\Models\Engine;
 use App\Models\Denting;
 use App\Models\Painting;
@@ -36,10 +37,17 @@ class JobSheetController extends Controller
      */
     public function create()
     {
+        $lastRecord = JobSheet::latest()->first();
+
+            if($lastRecord){
+                $nextNumber = $lastRecord->id + 1;
+                $jobNumber = date('Ymd').$nextNumber;
+            }
         return view('backend.job-sheets.create',[
             'customers'  =>Customer::all(),
             'vehicles'   =>Vehicle::all(),
             'colors'     =>Color::all(),
+            'jobNumber'     =>$jobNumber,
 
 
 
@@ -52,12 +60,7 @@ class JobSheetController extends Controller
     public function store(Request $request)
     {
         try {
-            $lastRecord = JobSheet::latest()->first();
-
-            if($lastRecord){
-                $nextNumber = $lastRecord->job_no + 1;
-                $request['job_no'] = $nextNumber;
-            }
+            
 
 
             $jobSheet = JobSheet::updateOrCreateJobSheet($request);
@@ -228,6 +231,8 @@ class JobSheetController extends Controller
             'customers'  =>Customer::all(),
             'vehicles'   =>Vehicle::all(),
             'colors'     =>Color::all(),
+            'wd'   =>Wd::where('job_sheet_id',$id)->get(),
+            'tp'   =>Tp::where('job_sheet_id',$id)->get(),
             'jobSheet'   =>JobSheet::where('id',$id)->first(),
 
 

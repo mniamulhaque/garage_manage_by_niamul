@@ -106,19 +106,6 @@
                                                type="color" data-id5="body" data-id6="boxed-theme" name="transparentBackground">
                                     </div>
                                 </div>
-                                <div class="switch-toggle">
-                                    <span class="">Background Image</span>
-                                    <div class="mt-1">
-                                        <a class="bg-img bg-img1" href="javascript:void(0);"><img
-                                                src="{{ asset('/') }}admin/assets/images/media/bg-img1.jpg" alt="Bg-Image" id="bgimage1"></a>
-                                        <a class="bg-img bg-img2" href="javascript:void(0);"><img
-                                                src="{{ asset('/') }}admin/assets/images/media/bg-img2.jpg" alt="Bg-Image" id="bgimage2"></a>
-                                        <a class="bg-img bg-img3" href="javascript:void(0);"><img
-                                                src="{{ asset('/') }}admin/assets/images/media/bg-img3.jpg" alt="Bg-Image" id="bgimage3"></a>
-                                        <a class="bg-img bg-img4" href="javascript:void(0);"><img
-                                                src="{{ asset('/') }}admin/assets/images/media/bg-img4.jpg" alt="Bg-Image" id="bgimage4"></a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

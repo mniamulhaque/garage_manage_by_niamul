@@ -55,8 +55,6 @@
         <!-- CONTAINER CLOSED -->
     </div>
 
-    @include('backend.includes.modal')
-
 
     @include('backend.includes.footer')
 
