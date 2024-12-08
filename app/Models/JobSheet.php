@@ -87,6 +87,11 @@ class JobSheet extends Model
         return $this->hasMany(Warring::class);
     }
 
+    public function acs()
+    {
+        return $this->hasMany(ac::class);
+    }
+
     public function paperhistories()
     {
         return $this->hasMany(PaperHistory::class);

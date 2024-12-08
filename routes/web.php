@@ -20,6 +20,7 @@ use App\Http\Controllers\PaintingController;
 use App\Http\Controllers\WarringController;
 use App\Http\Controllers\PaperHistoryController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\acContro;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -46,6 +47,7 @@ Route::middleware([
     Route::resource('dentings', DentingController::class);
     Route::resource('paintings', PaintingController::class);
     Route::resource('warrings', WarringController::class);
+    Route::resource('acs', acContro::class);
     Route::resource('paperhistories', PaperHistoryController::class);
     Route::get('/job-sheets/today/job-sheets', [JobSheetController::class, 'tjs'])->name('tjs');
     Route::get('/search', [SearchController::class, 'search'])->name('search');
@@ -73,6 +75,7 @@ Route::middleware([
     Route::get('/job-sheets/painting/{id}', [JobSheetController::class, 'painting'])->name('painting');
 
     Route::get('/job-sheets/warring/{id}', [JobSheetController::class, 'warring'])->name('warring');
+    Route::get('/job-sheets/ac/{id}', [JobSheetController::class, 'ac'])->name('ac');
 
 
 });

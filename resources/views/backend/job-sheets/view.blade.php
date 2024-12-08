@@ -417,14 +417,28 @@ size: A4;
                     @if(count($jobSheet->warrings) > 0)
                     @foreach($jobSheet->warrings as $warring)
                     <tr>
-                        <td style="background:#7030a0;color: white;"><b>Warring A/C</b></td>
+                        <td style="background:#7030a0;color: white;"><b>Warring</b></td>
                         <td class="rowdubble">{{$warring->price}}</td>
                     </tr>
                     @endforeach
                     @else
 
                     <tr>
-                        <td style="background:#7030a0;color: white;"><b>Warring A/C</b></td>
+                        <td style="background:#7030a0;color: white;"><b>Warring</b></td>
+                        <td class="rowdubble">0</td>
+                    </tr>
+                    @endif
+                    @if(count($jobSheet->acs) > 0)
+                    @foreach($jobSheet->acs as $ac)
+                    <tr>
+                        <td style="background:#7030a0;color: white;"><b>A/C</b></td>
+                        <td class="rowdubble">{{$ac->price}}</td>
+                    </tr>
+                    @endforeach
+                    @else
+
+                    <tr>
+                        <td style="background:#7030a0;color: white;"><b>A/C</b></td>
                         <td class="rowdubble">0</td>
                     </tr>
                     @endif
@@ -435,7 +449,7 @@ size: A4;
                     </tr>
 
                     <tr>
-                        <?php $totalBill = (count($jobSheet->twbs) > 0 ? $jobSheet->twbs[0]->price : 0) + (count($jobSheet->engines) > 0 ? $jobSheet->engines[0]->price : 0) + (count($jobSheet->dentings)> 0 ? $jobSheet->dentings[0]->price : 0) + (count($jobSheet->paintings) > 0? $jobSheet->paintings[0]->price : 0) + (count($jobSheet->warrings)> 0 ? $jobSheet->warrings[0]->price : 0)
+                         <?php $totalBill = (count($jobSheet->twbs) > 0 ? $jobSheet->twbs[0]->price : 0) + (count($jobSheet->engines) > 0 ? $jobSheet->engines[0]->price : 0) + (count($jobSheet->dentings)> 0 ? $jobSheet->dentings[0]->price : 0) + (count($jobSheet->paintings) > 0? $jobSheet->paintings[0]->price : 0) + (count($jobSheet->acs) > 0? $jobSheet->acs[0]->price : 0) + (count($jobSheet->warrings)> 0 ? $jobSheet->warrings[0]->price : 0)
 
     + $partstotal ?>
                         <td class="rowdubbletow text-right"><b>Total Bill=</b></td>

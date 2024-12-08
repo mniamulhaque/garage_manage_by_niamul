@@ -59,6 +59,8 @@ Sheet')
                                     <a href="{{ route('painting', $jobSheet->id) }}"class="btn btn-sm  me-1" style="background-color:darkturquoise;color:white">Painting</a>
 
                                     <a href="{{ route('warring', $jobSheet->id) }}" class="btn btn-sm me-1" style="background-color:hotpink;color:white">Warring</a>
+
+                                    <a href="{{ route('ac', $jobSheet->id) }}" class="btn btn-sm me-1" style="background-color:indigo;color:white">A/C</a>
                                 </td>
                             </tr>
                         @endforeach

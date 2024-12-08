@@ -101,7 +101,7 @@ class JobSheetController extends Controller
     {
         // return JobSheet::where('id',$id)->with(['wds','spvs','adps','tps','paperhistories','twbs','engines','dentings','paintings','warrings'])->first();
         return view('backend.job-sheets.view',[
-            'jobSheet'   =>JobSheet::where('id',$id)->with(['wds','spvs','adps','tps','paperhistories','twbs','engines','dentings','paintings','warrings'])->first(),
+            'jobSheet'   =>JobSheet::where('id',$id)->with(['wds','spvs','adps','tps','paperhistories','twbs','engines','dentings','paintings','warrings','acs'])->first(),
 
 
 
@@ -207,6 +207,14 @@ class JobSheetController extends Controller
     public function warring(string $id)
     {
         return view('backend.job-sheets.warring',[
+            'jobSheet'   =>JobSheet::where('id',$id)->first(),
+
+        ]);
+    }
+
+    public function ac(string $id)
+    {
+        return view('backend.job-sheets.ac',[
             'jobSheet'   =>JobSheet::where('id',$id)->first(),
 
         ]);
